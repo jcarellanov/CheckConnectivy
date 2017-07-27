@@ -14,6 +14,9 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.NetworkInfo.State;
+import android.net.Uri;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -90,7 +93,18 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        soundAlert();
     }
 
+
+    public void soundAlert(){
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
