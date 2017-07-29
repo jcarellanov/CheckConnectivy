@@ -17,6 +17,7 @@ import android.net.NetworkInfo.State;
 import android.net.Uri;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.os.Vibrator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
         soundAlert();
+        vibration();
     }
 
 
@@ -107,4 +109,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public Vibrator vibration() {
+
+        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+        long[] pattern = { 0, 3000, 3000 };
+
+        v.vibrate(pattern, -1);
+        return v;
+
+    }
 }
